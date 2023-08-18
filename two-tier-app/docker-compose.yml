@@ -1,0 +1,27 @@
+version: '3'
+services:
+  flask-app:
+    build: ./flask-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql-db
+    environment:
+      - MYSQL_HOST=mysql-db
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test@123
+      - MYSQL_DATABASE=flask_app
+
+  mysql-db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=test@123
+      - MYSQL_DATABASE=flask_app
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test@123
+volumes:
+      - my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume:
