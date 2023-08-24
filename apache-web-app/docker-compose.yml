@@ -13,5 +13,15 @@ services:
        - db
     container_name: apache_web
     restart: always
+    deploy:
+      replicas: 2
     ports:
-      - "8080:80"
+      - "8001-8005:8001"
+    volumes:
+      - my_django_volume:/app
+
+volumes:
+  my_django_volume:
+    external: true
+
+
